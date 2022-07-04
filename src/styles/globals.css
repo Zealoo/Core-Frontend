@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+@font-face {
+  font-family: "Circular Std";
+  src: url("/assets/fonts/circular-std/CircularStd-Book.ttf") format("truetype"),
+    url("/assets/fonts/circular-std/CircularStd-Book.woff") format("woff"),
+    url("/assets/fonts/CircularStd-Book.woff2") format("woff2"),
+    url("/assets/fonts/CircularStd-Book.eot") format("embedded-opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Circular Std";
+  src: url("/assets/fonts/circular-std/CircularStd-Medium.ttf")
+      format("truetype"),
+    url("/assets/fonts/circular-std/CircularStd-Medium.woff") format("woff"),
+    url("/assets/fonts/CircularStd-Medium.woff2") format("woff2"),
+    url("/assets/fonts/CircularStd-Medium.eot") format("embedded-opentype");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Circular Std";
+  src: url("/assets/fonts/circular-std/CircularStd-Bold.ttf") format("truetype"),
+    url("/assets/fonts/circular-std/CircularStd-Bold.woff") format("woff"),
+    url("/assets/fonts/CircularStd-Bold.woff2") format("woff2"),
+    url("/assets/fonts/CircularStd-Bold.eot") format("embedded-opentype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  /* Fonts */
+  --circular-std: "Circular Std", Arial;
+  --open-sans: "Open Sans", sans-serif;
+  --roboto: "Roboto", sans-serif;
+
+  /* Colors */
+  --blue-sky-1: #2a80ff;
+  --blue-sky-2: #5a9dff;
+  --inactive-grey: #c0ccde;
+}

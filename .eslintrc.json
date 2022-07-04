@@ -1,0 +1,17 @@
+{
+  "extends": ["next/core-web-vitals", "prettier"],
+  "rules": {
+    "no-unused-vars": "warn",
+    "prefer-const": "warn",
+    "no-var": "warn",
+    "class-methods-use-this": "off",
+    "func-names": "off",
+    "import/prefer-default-export": "warn",
+    "no-console": "warn",
+    "no-duplicate-imports": "error",
+    "no-plusplus": "warn",
+    "no-param-reassign": "off",
+    "object-shorthand": "off",
+    "spaced-comment": "warn"
+  }
+}
