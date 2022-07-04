@@ -9,6 +9,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import AppIcon from "./icon-components/app-icon";
 
 interface LinkStyleInfo {
@@ -145,6 +146,7 @@ const NavBarLinks = () => {
 };
 
 const NavBar = () => {
+  const router = useRouter();
   return (
     <Box as="nav">
       <Flex align="center" justify="space-around" p={4}>
@@ -159,17 +161,21 @@ const NavBar = () => {
           <NavBarLinks />
 
           <HStack spacing={2}>
-            <Link href="/auth/sign-in">
-              <Button bg="transparent" color="#002C6E">
-                Sign In
-              </Button>
-            </Link>
+            <Button
+              bg="transparent"
+              color="#002C6E"
+              onClick={() => router.push("/auth/sign-in")}
+            >
+              Sign In
+            </Button>
 
-            <Link href="/auth/sign-up">
-              <Button bgColor="#002C6E" color="white">
-                Register
-              </Button>
-            </Link>
+            <Button
+              bgColor="#002C6E"
+              color="white"
+              onClick={() => router.push("/auth/sign-up")}
+            >
+              Register
+            </Button>
           </HStack>
         </Flex>
       </Flex>
