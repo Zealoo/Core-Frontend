@@ -122,7 +122,7 @@ const NavBarLinks = () => {
           onClick={() => setAsDefault(liveEvents.name)}
           onMouseOver={() => setActive(liveEvents.name)}
           onMouseLeave={resetToDefaultActiveLink}
-          href="/live-events"
+          href="#"
         >
           <Text color={liveEvents.active ? "002C6E" : "#C0CCDE"}>
             Live Events
@@ -144,7 +144,7 @@ const NavBarLinks = () => {
           onClick={() => setAsDefault(blog.name)}
           onMouseOver={() => setActive(blog.name)}
           onMouseLeave={resetToDefaultActiveLink}
-          href="/blog"
+          href="#"
         >
           <Text color={blog.active ? "002C6E" : "#C0CCDE"}>Blog</Text>
         </Link>
@@ -165,7 +165,7 @@ const NavBarLinks = () => {
           onClick={() => setAsDefault(aboutUs.name)}
           onMouseOver={() => setActive(aboutUs.name)}
           onMouseLeave={resetToDefaultActiveLink}
-          href="/about-us"
+          href="#"
         >
           <Text color={aboutUs.active ? "002C6E" : "#C0CCDE"}>About us</Text>
         </Link>
