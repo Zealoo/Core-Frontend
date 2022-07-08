@@ -17,11 +17,54 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import useForm from "../../shared/hooks/useForm";
 import AppIcon from "../../components/icon-components/app-icon";
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [formData, handleFormData] = useForm({
+    firstName: "",
+    lastName: "",
+    userName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [passMatch, setPassMatch] = useState(false);
+
+  const checkIfPassIsConfirmed = () => {
+    if (formData.password === formData.confirmPassword) {
+      setPassMatch(true);
+    } else {
+      setPassMatch(false);
+    }
+  };
+
+  const submitFormData = async () => {
+    if (passMatch) {
+      const response = await fetch(
+        "https://zealoo-server.herokuapp.com/api/auth/signup",
+        {
+          method: "POST",
+          headers: {
+            type: "applicaiton/json",
+          },
+          body: JSON.stringify({
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            user_name: formData.userName,
+            email: formData.email,
+            password: formData.password,
+          }),
+        },
+      ).then((res) => res.json());
+
+      localStorage.setItem("testUsers", JSON.stringify(response));
+    }
+  };
+
   const router = useRouter();
   return (
     <Flex minH="100vh" align="center" justify="center" bg="gray.50">
@@ -64,23 +107,55 @@ export default function Signup() {
             {/* firstname field */}
             <FormControl id="firstName" isRequired>
               <FormLabel>First Name</FormLabel>
-              <Input type="text" placeholder="e.g John" />
+              <Input
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleFormData}
+                type="text"
+                placeholder="e.g John"
+              />
             </FormControl>
             {/* lastname field */}
             <FormControl id="lastName" isRequired>
               <FormLabel>Last Name</FormLabel>
-              <Input type="text" placeholder="e.g Doe" />
+              <Input
+                name="lastName"
+                value={formData.lastname}
+                onChange={handleFormData}
+                type="text"
+                placeholder="e.g Doe"
+              />
+            </FormControl>
+            {/* username field */}
+            <FormControl id="username" isRequired>
+              <FormLabel>Username</FormLabel>
+              <Input
+                name="userName"
+                value={formData.userName}
+                onChange={handleFormData}
+                type="text"
+                placeholder="e.g Doe17"
+              />
             </FormControl>
             {/* email field */}
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" placeholder="e.g johndoe@gmail.com" />
+              <Input
+                name="email"
+                value={formData.email}
+                onChange={handleFormData}
+                type="email"
+                placeholder="e.g johndoe@gmail.com"
+              />
             </FormControl>
             {/* password field */}
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
                 <Input
+                  name="password"
+                  value={formData.password}
+                  onChange={handleFormData}
                   placeholder="e.g rosemary#2123"
                   type={showPassword ? "text" : "password"}
                 />
@@ -101,10 +176,31 @@ export default function Signup() {
             <FormControl id="confirmPassword" isRequired>
               <FormLabel>Confirm Password</FormLabel>
               <InputGroup>
-                <Input
-                  placeholder="e.g rosemary#2123"
-                  type={showConfirmPassword ? "text" : "password"}
-                />
+                {passMatch ? (
+                  <Input
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleFormData}
+                    onKeyUp={checkIfPassIsConfirmed}
+                    placeholder="e.g rosemary#2123"
+                    type={showConfirmPassword ? "text" : "password"}
+                  />
+                ) : (
+                  <Input
+                    borderColor="red.300"
+                    isInvalid
+                    errorBorderColor="red.300"
+                    _focus={{ boxShadow: "none", borderColor: "red.300" }}
+                    boxShadow="none"
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleFormData}
+                    onKeyUp={checkIfPassIsConfirmed}
+                    placeholder="e.g rosemary#2123"
+                    type={showConfirmPassword ? "text" : "password"}
+                  />
+                )}
+
                 <InputRightElement h={"full"}>
                   <Button
                     variant={"ghost"}
@@ -131,7 +227,9 @@ export default function Signup() {
                   </Link>
                 </Text>
               </Stack>
-              <Button colorScheme="brand">Sign up</Button>
+              <Button colorScheme="brand" onClick={submitFormData}>
+                Sign up
+              </Button>
             </Stack>
           </VStack>
         </Box>

@@ -69,7 +69,11 @@ const Home: NextPage = () => {
                 </HStack>
               </VStack>
 
-              <Box boxSize="md" bg="red" borderTopRadius="md">
+              <Box
+                display={["none", "none", "block"]}
+                boxSize="md"
+                borderTopRadius="md"
+              >
                 <Image
                   borderTopRadius="md"
                   objectFit="cover"
@@ -166,24 +170,25 @@ const Home: NextPage = () => {
               </VStack>
             </Box>
             <Box w="50%" h="full">
-              <VStack justify="end" h="full">
+              <VStack justify="flex-end" h="full">
                 <Box
                   bg="#F2F6FD"
                   overflow="hidden"
                   h="90%"
                   w="full"
                   borderTopLeftRadius="md"
+                  display="flex"
+                  justifyContent="flex-end"
+                  alignItems="end"
                 >
-                  <VStack h="full" align="end" justify="end">
-                    <Box borderTopLeftRadius="md" h="90%" w="90%">
-                      <Image
-                        src="/assets/images/cmn1.png"
-                        objectFit="contain"
-                        alt=""
-                        transform="scale(0.9)"
-                      />
-                    </Box>
-                  </VStack>
+                  <Box borderTopLeftRadius="md" h="90%" w="90%">
+                    <Image
+                      src="/assets/images/cmn1.png"
+                      objectFit="contain"
+                      alt=""
+                      transform="scale(0.9)"
+                    />
+                  </Box>
                 </Box>
               </VStack>
             </Box>
@@ -257,7 +262,7 @@ const Home: NextPage = () => {
               </Flex>
 
               <Box w="full" h="full">
-                <Flex h="full" w="full" align="center" justify="space-between">
+                <Flex h="full" w="full" align="center" justify="space-around">
                   <FeaturedMotionCard
                     motionSignatureImg="/assets/images/food-donation.png"
                     motionDescription="We aim to feed less privileged communities and provide support for the needy."

@@ -44,7 +44,9 @@ const useActiveLink = (
     defaultActiveLink = name;
   };
 
-  const resetToDefaultActiveLink = () => setActive(defaultActiveLink as string);
+  const resetToDefaultActiveLink = () => {
+    setActive(defaultActiveLink as string);
+  };
 
   return [activeLink, setActive, resetToDefaultActiveLink, setAsDefault];
 };
@@ -66,7 +68,13 @@ const NavBarLinks = () => {
       display={{ base: "none", lg: "flex" }}
       sx={{ "a:hover": { textDecoration: "none" } }}
     >
-      <VStack w="max">
+      <Box
+        w="max"
+        h="max"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
         <Link
           onMouseOver={() => setActive(home.name)}
           onClick={() => setAsDefault(home.name)}
@@ -74,12 +82,19 @@ const NavBarLinks = () => {
         >
           <Text color={home.active ? "002C6E" : "#C0CCDE"}>Home</Text>
         </Link>
-        {home.active && (
-          <Image alt="" src="/assets/icons/indicator-circle.svg" />
-        )}
-      </VStack>
 
-      <VStack>
+        {home.active && (
+          <Image alt="" src="/assets/icons/indicator-circle.svg" boxSize={2} />
+        )}
+      </Box>
+
+      <Box
+        w="max"
+        h="max"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
         <Link
           onClick={() => setAsDefault(communities.name)}
           onMouseOver={() => setActive(communities.name)}
@@ -94,9 +109,15 @@ const NavBarLinks = () => {
         {communities.active && (
           <Image alt="" src="/assets/icons/indicator-circle.svg" />
         )}
-      </VStack>
+      </Box>
 
-      <VStack>
+      <Box
+        w="max"
+        h="max"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
         <Link
           onClick={() => setAsDefault(liveEvents.name)}
           onMouseOver={() => setActive(liveEvents.name)}
@@ -110,9 +131,15 @@ const NavBarLinks = () => {
         {liveEvents.active && (
           <Image alt="" src="/assets/icons/indicator-circle.svg" />
         )}
-      </VStack>
+      </Box>
 
-      <VStack>
+      <Box
+        w="max"
+        h="max"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
         <Link
           onClick={() => setAsDefault(blog.name)}
           onMouseOver={() => setActive(blog.name)}
@@ -125,9 +152,15 @@ const NavBarLinks = () => {
         {blog.active && (
           <Image alt="" src="/assets/icons/indicator-circle.svg" />
         )}
-      </VStack>
+      </Box>
 
-      <VStack>
+      <Box
+        w="max"
+        h="max"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
         <Link
           onClick={() => setAsDefault(aboutUs.name)}
           onMouseOver={() => setActive(aboutUs.name)}
@@ -140,7 +173,7 @@ const NavBarLinks = () => {
         {aboutUs.active && (
           <Image alt="" src="/assets/icons/indicator-circle.svg" />
         )}
-      </VStack>
+      </Box>
     </HStack>
   );
 };
